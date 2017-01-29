@@ -30,6 +30,7 @@ public class SampleController extends Observable implements view {
 
 	private int timercount;
 	private int steps=0;
+	Timer t;
 
 
 	@FXML
@@ -80,11 +81,11 @@ public class SampleController extends Observable implements view {
 
 	public void openFile() {
 
-	    timerCounter=new SimpleStringProperty();
-        stepsCounter=new SimpleIntegerProperty();
+		timerCounter=new SimpleStringProperty();
+		stepsCounter=new SimpleIntegerProperty();
 
-        timer.textProperty().bind(timerCounter);
-        stepscount.textProperty().bind(stepsCounter.asString());
+		timer.textProperty().bind(timerCounter);
+		stepscount.textProperty().bind(stepsCounter.asString());
 
 		setTimer(0);
 		steps=0;
@@ -126,8 +127,6 @@ public class SampleController extends Observable implements view {
 		}
 
 	}
-
-
 
 	public void exit() {
 		exit= new ExitReciver();
@@ -174,7 +173,7 @@ public class SampleController extends Observable implements view {
 
 	private  void startTimer()
 	{
-		Timer t=new  Timer();
+		t=new  Timer();
 		t.scheduleAtFixedRate(new TimerTask() {
 
 			@Override
@@ -182,6 +181,9 @@ public class SampleController extends Observable implements view {
 				setTimer(getTimer()+1);
 			}
 		}, 0, 1000);
+	}
+	private void stopTimer(){
+
 	}
 
 	private void setTimer(int num) {
@@ -210,6 +212,17 @@ public class SampleController extends Observable implements view {
 		steps++;
 		this.stepsCounter.set(steps);
 	}
+
+	@Override
+	public void levelFinshed() {
+		this.player.stop();
+		this.finished.play();
+		System.out.println("im here level finished");
+		stopTimer();//לממש אותה שתפסיק את הטיימק
+		//
+	}
+
+
 
 
 

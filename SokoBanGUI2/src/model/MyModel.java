@@ -31,9 +31,14 @@ public class MyModel extends Observable implements Model {
 		params.add("DISPLAY");
 		if(mover.getDone())
 			params.add("done");
-		//System.out.println("done");
+
+		if(mover.levelIsFinished())
+			params.add("finish");
+
 		setChanged();
 		notifyObservers(params);
+
+
 
 	}
 

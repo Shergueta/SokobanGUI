@@ -24,9 +24,17 @@ public class Display extends Command {
 
 		if(!params.isEmpty())
 		{
-			System.out.println("move made");
-			v.display(level);
-			v.moveMade();
+			if(params.size()==1)
+			{
+				v.moveMade();
+				v.display(level);
+			}
+			if(params.size()==2)
+			{
+				v.moveMade();
+				v.display(level);
+				v.levelFinshed();
+			}
 
 		}
 		v.display(this.level);

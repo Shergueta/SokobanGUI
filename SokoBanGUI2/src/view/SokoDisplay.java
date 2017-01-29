@@ -11,7 +11,6 @@ import model.data.Level;
 
 public class SokoDisplay extends Canvas {
 
-	//private LevelReadOnly levelReadOnly;
 	private Level level;
 
 

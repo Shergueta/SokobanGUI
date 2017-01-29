@@ -14,6 +14,17 @@ public class Level implements Serializable {
 	private Policy policy;
 	private int numOfBoxes;
 	private int numOfTargets;
+	private int numBoxNtarget;
+
+
+	public int getNumBoxNtarget() {
+		return numBoxNtarget;
+	}
+	public void setNumBoxNtarget(int numBoxNtarget) {
+		this.numBoxNtarget = numBoxNtarget;
+	}
+
+
 	private String level;
 	public int steps;
 	public int secondsCount;
@@ -44,6 +55,7 @@ public class Level implements Serializable {
 	}
 
 	public Level(String level,Policy policy) {
+		this.numBoxNtarget=0;
 		this.policy=policy;
 		this.level=level;
 		int xMax=GetXmax(level);
@@ -94,6 +106,7 @@ public class Level implements Serializable {
 					matrix[j][i].setSymbol('$');
 					numOfBoxes++;
 					numOfTargets++;
+					numBoxNtarget++;
 					break;
 
 				case '!':
@@ -108,6 +121,10 @@ public class Level implements Serializable {
 				}
 			}
 		}
+		System.out.println(" num of boxes"+""+this.numOfBoxes);
+		System.out.println("num of target"+""+this.numOfTargets);
+		System.out.println("num of BoxNtarget"+""+this.numBoxNtarget);
+
 	}
 
 	public boolean validateLevel()

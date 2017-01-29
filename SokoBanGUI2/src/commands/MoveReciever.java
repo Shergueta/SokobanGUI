@@ -11,7 +11,14 @@ public class MoveReciever extends Receiver{
 	public String direction;
 	public Level level;
 	boolean done=false;
+	int boxNtarget;
 
+	public boolean levelIsFinished(){
+
+		if(level.getNumOfBoxes()==this.boxNtarget)
+			return true;
+		return false;
+	}
 
 	public boolean getDone(){
 		return this.done;
@@ -119,6 +126,7 @@ public class MoveReciever extends Receiver{
 	}
 
 	public void  moveItem(Point currentPoint, String direction,Point newPoint) {
+		this.boxNtarget=this.level.getNumBoxNtarget();
 		done=true;
 		int numOfSteps= level.getSteps();
 		level.setSteps(++numOfSteps);
@@ -128,8 +136,6 @@ public class MoveReciever extends Receiver{
 		char newChar = level.getSymbolByPoint(newPoint);
 		int x=currentPoint.getX();
 		int y=currentPoint.getY();
-		//		System.out.println(x);
-		//		System.out.println(y);
 		int newX=newPoint.getX();
 		int newY=newPoint.getY();
 		int xAfter=pointAfter.getX();
@@ -158,6 +164,10 @@ public class MoveReciever extends Receiver{
 			this.level.getMatrix()[newX][newY].getCell().remove(level.getPositionInArray(level.getMatrix()[newX][newY].getCell(), '@'));
 			this.level.getMatrix()[xAfter][yAfter].getCell().add(new Box(new Point(xAfter,yAfter)));
 			this.level.getMatrix()[xAfter][yAfter].setSymbol('@');
+			this.level.setNumBoxNtarget(--this.boxNtarget);
+			System.out.println("NumBoxNtarget"+this.boxNtarget);
+
+
 			this.level.getMatrix()[newX][newY].getCell().add(new Player(new Point(newX,newY)));
 			this.level.getMatrix()[newX][newY].setSymbol('!');
 			break;
@@ -165,7 +175,13 @@ public class MoveReciever extends Receiver{
 			this.level.getMatrix()[newX][newY].getCell().remove(level.getPositionInArray(level.getMatrix()[newX][newY].getCell(), '@'));
 			this.level.getMatrix()[xAfter][yAfter].getCell().add(new Box(new Point(xAfter,yAfter)));
 			if(this.level.getMatrix()[xAfter][yAfter].getSymbol()=='o')
+			{
 				this.level.getMatrix()[xAfter][yAfter].setSymbol('$');
+				this.level.setNumBoxNtarget(++this.boxNtarget);
+				System.out.println("NumBoxNtarget"+this.boxNtarget);
+
+
+			}
 			else
 				this.level.getMatrix()[xAfter][yAfter].setSymbol('@');
 			this.level.getMatrix()[newX][newY].getCell().add(new Player(new Point(newX,newY)));
@@ -182,6 +198,5 @@ public class MoveReciever extends Receiver{
 			break;
 		}
 		this.level.updateString();
-		//System.out.println(this.level.getLevel());
 	}
 }

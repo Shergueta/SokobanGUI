@@ -79,6 +79,14 @@ public class MyView extends Observable implements view  {
 
 
 
+	@Override
+	public void levelFinshed() {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
 
 
 

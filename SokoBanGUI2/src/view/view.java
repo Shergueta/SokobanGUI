@@ -12,6 +12,8 @@ public interface view {
 
 	public void moveMade();
 
+	public void levelFinshed();
+
 	public void displayMessage(String msg);
 
 	//public void setLevel(LevelReadOnly level);
