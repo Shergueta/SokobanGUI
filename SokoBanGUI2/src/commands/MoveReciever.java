@@ -10,7 +10,12 @@ public class MoveReciever extends Receiver{
 
 	public String direction;
 	public Level level;
+	boolean done=false;
 
+
+	public boolean getDone(){
+		return this.done;
+	}
 
 	public MoveReciever(String direction,Level level){
 		this.direction=direction;
@@ -114,6 +119,7 @@ public class MoveReciever extends Receiver{
 	}
 
 	public void  moveItem(Point currentPoint, String direction,Point newPoint) {
+		done=true;
 		int numOfSteps= level.getSteps();
 		level.setSteps(++numOfSteps);
 
@@ -122,8 +128,8 @@ public class MoveReciever extends Receiver{
 		char newChar = level.getSymbolByPoint(newPoint);
 		int x=currentPoint.getX();
 		int y=currentPoint.getY();
-//		System.out.println(x);
-//		System.out.println(y);
+		//		System.out.println(x);
+		//		System.out.println(y);
 		int newX=newPoint.getX();
 		int newY=newPoint.getY();
 		int xAfter=pointAfter.getX();
@@ -176,6 +182,6 @@ public class MoveReciever extends Receiver{
 			break;
 		}
 		this.level.updateString();
-		System.out.println(this.level.getLevel());
+		//System.out.println(this.level.getLevel());
 	}
 }

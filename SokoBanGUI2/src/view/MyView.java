@@ -71,6 +71,14 @@ public class MyView extends Observable implements view  {
 
 
 
+	@Override
+	public void moveMade() {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
 
 
 

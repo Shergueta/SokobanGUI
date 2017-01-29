@@ -10,7 +10,7 @@ public interface view {
 
 	public void start();
 
-//	public void exit();
+	public void moveMade();
 
 	public void displayMessage(String msg);
 

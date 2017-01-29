@@ -12,7 +12,8 @@ import model.data.SaveXml;
 public class SaveFile extends Receiver {
 
 	private Level level;
-	private OutputStream outputStream;
+	//private OutputStream outputStream;
+	private String fileName;
 	private String type;
 
 	public Level getLevel() {
@@ -21,34 +22,30 @@ public class SaveFile extends Receiver {
 	public void setLevel(Level level) {
 		this.level = level;
 	}
-	public OutputStream getOutputStream() {
-		return outputStream;
-	}
-	public void setOutputStream(OutputStream outputStream) {
-		this.outputStream = outputStream;
-	}
+
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
 		this.type = type;
 	}
-	public SaveFile(Level level,OutputStream outputStream, String type) {
+	public SaveFile(Level level,String fileName) {
 
 		this.level=level;
-		this.outputStream=outputStream;
-		this.type=type;
+		this.fileName=fileName;
 
 	}
 	@Override
 	public void action() {
-
+		setState(fileName);
 		HashMap<String, GeneralLevelSaver> fileTypes=new HashMap<String, GeneralLevelSaver>();
-		fileTypes.put("txt", new SaveTxt(this.level,this.outputStream));
-		fileTypes.put("xml", new SaveXml(this.level,this.outputStream));
-		fileTypes.put("obj", new SaveObj(this.level,this.outputStream));
+		fileTypes.put("txt", new SaveTxt(this.level,this.fileName));
+		fileTypes.put("xml", new SaveXml(this.level,this.fileName));
+		fileTypes.put("obj", new SaveObj(this.level,this.fileName));
 		GeneralLevelSaver gls=fileTypes.get(type);
 		gls.saveLevel();
 	}
 
-}
+	public void setState(String fileName) {
+		this.type= fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());
+	}}

@@ -8,7 +8,7 @@ public interface Model {
 
 	public Level getLevel();
 	public void move(String Move);
-	public void save();
+	public void save(String fileName);
 	void load(String string);
 	void setLevel(Level loadLevel);
 	void exit();

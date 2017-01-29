@@ -16,6 +16,7 @@ public class SokoDisplay extends Canvas {
 
 
 	private HashMap<Character, Image> objectsImage;
+	GraphicsContext gc = getGraphicsContext2D();
 
 	public SokoDisplay()
 	{
@@ -84,12 +85,10 @@ public class SokoDisplay extends Canvas {
 		//System.out.println(this.level.GetXmax(this.level.getLevel());
 		//double size = W / Math.max(this.level.getMatrix().length, this.level.getMatrix()[0].length);
 
-		GraphicsContext gc = getGraphicsContext2D();
 		gc.clearRect(0, 0, W, H);
 		gc.setFill(Color.WHITESMOKE);
 		gc.fillRect(0, 0, W, H);
-//		System.out.println(this.level.getMatrix().length);
-	//	System.out.println(this.level.getMatrix()[0].length);
+
 		for(int i=0;i<this.level.GetYmax(this.level.getLevel());i++){
 			for(int j=0;j<this.level.GetXmax(this.level.getLevel());j++){
 				if(this.level.getMatrix()[j][i]!=null){
@@ -100,33 +99,11 @@ public class SokoDisplay extends Canvas {
 			}
 		}
 	}
-}
-//Scanner scanner=new Scanner(this.level.getLevel());
-//		int x=0;
-//		int y=0;
-//
-//		double W = getWidth();
-//		double H = getHeight();
-//		double w =W/this.level.GetXmax(this.level.getLevel());
-//		double h =H/this.level.GetYmax(this.level.getLevel());
-//		GraphicsContext gc = getGraphicsContext2D();
-//		gc.clearRect(0, 0, W, H);
-//		gc.setFill(Color.WHITESMOKE);
-//		gc.fillRect(0, 0, W, H);
-//
-//		while(scanner.hasNextLine())
-//			{
-//			String line=scanner.nextLine();
-//			Scanner lineScaner=new Scanner(line);
-//			while(lineScaner.hasNext())
-//			{
-//				key=this.level.getMatrix()[x][y].getSymbol();
-//				System.out.print(key);
-//				gc.drawImage(this.objectsImage.get(key), x, y);
-//				x++;
-//			}
-//			System.out.println();
-//			y++;
-//			x=0;
-//			}
 
+
+	public void clearCanvas() {
+
+				gc.clearRect(0, 0, getWidth(), getHeight());
+			}
+
+}

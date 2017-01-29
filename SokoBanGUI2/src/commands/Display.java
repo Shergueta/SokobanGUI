@@ -19,7 +19,16 @@ public class Display extends Command {
 	@Override
 
 	public void execute() {
+
 		this.level=m.getLevel();
+
+		if(!params.isEmpty())
+		{
+			System.out.println("move made");
+			v.display(level);
+			v.moveMade();
+
+		}
 		v.display(this.level);
 	}
 

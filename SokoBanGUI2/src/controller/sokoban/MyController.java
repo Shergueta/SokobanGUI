@@ -43,26 +43,25 @@ public class MyController implements Observer {
 	}
 
 	@Override
-	 public void update(Observable o, Object arg) {
-        LinkedList<String> params = (LinkedList<String>) arg;
-        for (String string : params) {
+	public void update(Observable o, Object arg) {
+		LinkedList<String> params = (LinkedList<String>) arg;
+		for (String string : params) {
 		}
-        String commandKey = params.removeFirst();
-        Command c = commands.get(commandKey.toUpperCase());
-        if (c == null) {
-            v.displayMessage("Error");
-            return;
-        }
-        else if(commandKey=="EXIT")
-    		//System.out.println("im here");
+		String commandKey = params.removeFirst();
+		Command c = commands.get(commandKey.toUpperCase());
+		if (c == null) {
+			v.displayMessage("Error");
+			return;
+		}
+		else if(commandKey=="EXIT")
+			controller.stop();
 
-        //(c.equals("EXIT"))
-        	controller.stop();
-        c.setParams(params);
-        controller.insertCommand(c);
 
-    }
+		c.setParams(params);
+		controller.insertCommand(c);
 
 	}
+
+}
 
 

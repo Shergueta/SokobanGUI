@@ -4,8 +4,8 @@ import java.io.OutputStream;
 
 public abstract class GeneralLevelSaver implements LevelSaver {
 
-	Level level;
-	OutputStream outputStream;
+	public Level level;
+	public String fileName;
 	@Override
 	public abstract void saveLevel();
 

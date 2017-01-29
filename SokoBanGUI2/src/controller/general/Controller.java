@@ -43,7 +43,7 @@ public  class Controller {
 
 			}
 		});thread.start();
-	}
+			}
 
 	public void stop(){
 		isStoped=true;
